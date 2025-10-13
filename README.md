@@ -18,7 +18,7 @@ ng new nome-app
 ## Struttura dell'applicazione
 - `.vscode`: cartella nascosta di VS Code
 - `node_modules`: sempre presente nei progetti Node e gestita da npm (.gitignore)
-
+- `public`: cartella per i media da utilizzare nel progetto
 
 ## Tools
 - [Angular](https://angular.dev/)
