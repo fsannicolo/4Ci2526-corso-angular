@@ -46,6 +46,47 @@ ng new nome-app
   - `angular.json`: configurazione globale dell'applicazione
   - `package.json`, `package-lock.json`: dependancies Node del progetto
 
+## Deploy dell'applicazione
+Per eseguire il build dell'applicazione ed ottenere il file da pubblicare con un server web statico (le applicazioni SSR non richiedono per il loro funzionamento un server node) eseguire il comando:
+
+```bash
+ng build
+```
+
+Verrà creata la directory `dist/nome-app/browser` che conterrà i file dell'applicazione (index.html, style.css, main.js...).  
+
+Per effettuare una prova con nginx e docker, dopo aver copiato i file in una directory (es app):
+```bash
+docker run --name webserver -p 6000:80 -v /workspaces/Corso-Angular-4Ci-2025-2026/app:/usr/share/nginx/html nginx
+```
+
+## Sviluppo dell'applicazione
+Angular vi mette a disposizione un server web di sviluppo che avverte i cambiamenti apportati ai file html, css e typescript ed esegue in automatico il build dell'applicazione e pubblica sul web l'app aggiornata.  
+Per avviare il server di sviluppo:
+```bash
+ng serve
+```
+
+## Configurazione Bootstrap
+Aggiungiamo il package "bootstrap" per l'estetica e rendere l'applicazione responsive
+```bash
+npm install bootstrap
+```
+
+>[!WARNING]
+>L'installazione del pacchetto va effettuata nella directory del progetto Angular
+
+Modifichiamo il file `angular.json` aggiungendo il file css e la libreria js di Bootstrap
+```json
+"styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.css"
+],
+  "scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
+```
+
 ## Tools
 - [Angular](https://angular.dev/)
 - [Node js](https://nodejs.org/en)
