@@ -39,3 +39,39 @@ Studente: {{studente()}}
         </p>
     </div>
 </div>
+
+<h3>Property binding</h3>
+<p>Una property corrisponde a un attributo di un elemento (ad esempio "src" per img)</p>
+
+<div>
+    <p>Inserimento di un'immagine statica:</p>
+    <img class="img-fluid img-thumbnail" src="/rubik.png" alt="Cubo di Rubik">
+
+</div>
+<div class="row mt-5">
+    <p>Inserimento di un'immagine dinamica:</p>
+    <div class="col-sm-3">
+        <div>
+            <button class="btn btn-primary" (click)="prec()" [disabled]="indiceImg()==0">Precedente</button>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <img class="img-fluid img-thumbnail" [src]="immagini[indiceImg()]" alt="Immagine statica">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <button class="btn btn-primary" (click)="next()" [disabled]="indiceImg()==immagini.length-1">Successivo</button>
+        </div>
+    </div>
+</div>
+
+<h3>Style binding</h3>
+<p>Come assegnare uno stile CSS ad un elemento HTML</p>
+<p>[style.proprietà]</p>
+<p style="color: blueviolet">Questo testo è viola</p>
+<p [style.color]="colore()">Questo colore cambia casualmente</p>
+
+<h3>Class binding</h3>
+<p>[class]</p>
