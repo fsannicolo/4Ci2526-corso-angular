@@ -1,4 +1,5 @@
 import { Component, WritableSignal, signal } from '@angular/core';
+import { getCurrentInjector } from '@angular/core/primitives/di';
 
 @Component({
   selector: 'app-structural-directives',
@@ -13,6 +14,8 @@ export class StructuralDirectives {
   immagineOTesto: WritableSignal<string> = signal('immagine');
   nomi: WritableSignal<string[]> = signal(['Andrea', 'Claudio', 'Luca', 'Federico']);
 
+  indiceModifica: WritableSignal<number> = signal(-1);
+
   toggleVisualizza(): void {
     this.visualizza.update(current => !current);
   }
@@ -26,6 +29,32 @@ export class StructuralDirectives {
   }
 
   aggiungiNome(nome: any): void {
-    console.log(nome.value);
+    //console.log(nome.value);
+    this.nomi.update(current => [...current, nome.value])
+    // genera un nuovo array che contiene gli stessi elementi, più un nuovo in coda
+  }
+
+  eliminaNome(indice: number): void {
+    this.nomi.update(current => {
+      current.splice(indice, 1);
+      return current;
+    });
+  }
+
+  attivaModifica(indice: number): void {
+    this.indiceModifica.set(indice);
+  }
+
+  annulla(): void {
+    this.indiceModifica.set(-1);
+  }
+
+  salva(nome: string, indice: number): void {
+    this.nomi.update(current => {
+      current[indice] = nome;
+      return current;
+    });
+
+    this.indiceModifica.set(-1);
   }
 }

@@ -24,7 +24,7 @@
 
 <p><b>Esempio 2</b></p>
 <p>
-    Decidiamo se visualizzare un'immagine oppure un testp in base alla scelta fatta dall'utente:
+    Decidiamo se visualizzare un'immagine oppure un testo in base alla scelta fatta dall'utente:
 </p>
 <div class="row">
     <div class="col-sm-3">
@@ -59,25 +59,40 @@
 <p>
     Visualizzo un elenco puntato con i nomi presenti nell'array gestito dal signal:
 </p>
-<div class="row">
-    <div class="col-sm-6">
-        <div>
-            <div class="mb-3">
-                <label for="inName" class="form-label">Nome</label>
-                <input type="text" class="form-control" placeholder="Aggiungi un nome..." #inName>
+<div class="mt-5 mb-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <div class="mb-3">
+                    <label for="inName" class="form-label">Nome</label>
+                    <input type="text" class="form-control" placeholder="Aggiungi un nome..." #inName>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <button class="btn btn-primary" (click)="aggiungiNome(inName)">Aggiungi</button>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
-        <div>
-            <button class="btn btn-primary" (click)="aggiungiNome(inName)">Aggiungi</button>
-        </div>
-    </div>
-</div>
-<div>
-    <ul>
         @for(nome of nomi(); track nome) {
-            <li>{{nome}}</li>
+            @if (indiceModifica() === $index) {
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item flex-fill">
+                        <input class="form-control" type="text" [value]="nome" #inNuovoNome>
+                    </li>
+                    <li class="list-group-item"><button class="btn btn-primary" (click)="salva(inNuovoNome.value ,$index)">Salva</button></li>
+                    <li class="list-group-item"><button class="btn btn-secondary" (click)="annulla()">Annulla</button></li>
+                </ul>
+            }
+            @else {
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item flex-fill">{{nome}}</li>
+                    <li class="list-group-item"><button class="btn btn-danger" (click)="eliminaNome($index)">Elimina</button></li>
+                    <li class="list-group-item"><button class="btn btn-warning" (click)="attivaModifica($index)">Modifica</button></li>
+                </ul>
+            }
         }
-    </ul>
+    </div>
 </div>
