@@ -21,9 +21,14 @@ export class Bindings implements OnInit {
   colors: string[] = ['red', 'green', 'blue', 'orange', 'violet', 'black'];
   colore: WritableSignal<string> = signal(this.colors[0]);
 
+  classi: string = 'border lead';
+  backGround: WritableSignal<boolean> = signal(true);
+
   // eseguita alla visualizzazione del component
   ngOnInit(): void {
     let cronometro = interval(1000).subscribe(() => this.cambiaColore());
+
+    interval(500).subscribe(() => this.backGround.update(valoreAttuale => !valoreAttuale));
   }
 
   cambiaNome(): void {
