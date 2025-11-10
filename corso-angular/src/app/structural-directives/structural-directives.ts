@@ -15,6 +15,7 @@ export class StructuralDirectives {
   nomi: WritableSignal<string[]> = signal(['Andrea', 'Claudio', 'Luca', 'Federico']);
 
   indiceModifica: WritableSignal<number> = signal(-1);
+  tipoUtente: WritableSignal<string> = signal('studente');
 
   toggleVisualizza(): void {
     this.visualizza.update(current => !current);
@@ -56,5 +57,21 @@ export class StructuralDirectives {
     });
 
     this.indiceModifica.set(-1);
+  }
+
+  setStudente(): void {
+    this.tipoUtente.set('studente');
+  }
+
+  setDocente(): void {
+    this.tipoUtente.set('docente');
+  }
+
+  setGenitore(): void {
+    this.tipoUtente.set('genitore');
+  }
+
+  setAltro(): void {
+    this.tipoUtente.set('altro');
   }
 }

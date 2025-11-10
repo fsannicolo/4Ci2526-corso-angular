@@ -87,6 +87,10 @@ Modifichiamo il file `angular.json` aggiungendo il file css e la libreria js di 
 ]
 ```
 
+## Signal
+
+Un signal è una **funzione wrapper** reattiva che incapsula un valore e notifica il framework quando cambia, permettendo di aggiornare la UI in modo efficiente. Funziona come una funzione *getter* che restituisce il suo valore corrente e dispone di metodi per modificarlo.
+
 ## Tools
 - [Angular](https://angular.dev/)
 - [Node js](https://nodejs.org/en)

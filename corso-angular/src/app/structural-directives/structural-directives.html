@@ -4,15 +4,18 @@
 <p>
     Le direttive strutturali ci consentono di modificare in modo dinamico la struttura della pagina, ovvero aggiungere o rimuovere tag in modo dinamico.
 </p>
-<h2 class="display-5">La direttiva if</h2>
-<p>
-    <b>if</b> ci consente di visualizzare o meno oppure scegliere fra due blocchi HTML al verificarsi di una condizione.
-</p>
 
-<p><b>Esempio 1</b></p>
-<p>
-    Il pargrafo in basso viene aggiunto al DOM se il valore del signal è true, altrimenti non viene aggiunto nulla:
-</p>
+<div>
+    <h2 class="display-6">La direttiva if</h2>
+    <p>
+        <b>if</b> ci consente di visualizzare o meno oppure scegliere fra due blocchi HTML al verificarsi di una condizione.
+    </p>
+
+    <p><b>Esempio 1</b></p>
+    <p>
+        Il paragrafo in basso viene aggiunto al DOM se il valore del signal è true, altrimenti non viene aggiunto nulla:
+    </p>
+</div>
 <div>
     <button class="btn btn-primary" (click)="toggleVisualizza()">
         @if (visualizza()) {Nascondi} @else {Mostra}
@@ -22,10 +25,12 @@
     <p>Questo è un paragrafo che appare e scompare.</p>
 }
 
-<p><b>Esempio 2</b></p>
-<p>
-    Decidiamo se visualizzare un'immagine oppure un testo in base alla scelta fatta dall'utente:
-</p>
+<div>
+    <p><b>Esempio 2</b></p>
+    <p>
+        Decidiamo se visualizzare un'immagine oppure un testo in base alla scelta fatta dall'utente:
+    </p>
+</div>
 <div class="row">
     <div class="col-sm-3">
         <div>
@@ -50,16 +55,18 @@
     </div>
 </div>
 
-<h2 class="display-5">La direttiva for</h2>
-<p>
-    <b>for</b> consente di iterare su un array, aggiungendo tanti blocchi html quanti sono gli elementi dell'array.
-</p>
-
-<p><b>Esempio 3</b></p>
-<p>
-    Visualizzo un elenco puntato con i nomi presenti nell'array gestito dal signal:
-</p>
-<div class="mt-5 mb-5">
+<div>
+    <h2 class="display-6">La direttiva for</h2>
+    <p>
+        <b>for</b> consente di iterare su un array, aggiungendo tanti blocchi html quanti sono gli elementi dell'array.
+    </p>
+    
+    <p><b>Esempio 3</b></p>
+    <p>
+        Visualizzo un elenco puntato con i nomi presenti nell'array gestito dal signal:
+    </p>
+</div>
+<div>
     <div class="row">
         <div class="col-sm-6">
             <div>
@@ -75,7 +82,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="mt-5 mb-5 col-sm-6">
         @for(nome of nomi(); track nome) {
             @if (indiceModifica() === $index) {
                 <ul class="list-group list-group-horizontal">
@@ -95,4 +102,34 @@
             }
         }
     </div>
+</div>
+
+<div>
+    <h2 class="display-6">La direttiva switch</h2>
+    <p>Switch consente di inserire blocchi diversi in base al valore di una variabile</p>
+</div>
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary" (click)="setStudente()">Studente</button>
+        <button class="btn btn-primary" (click)="setDocente()">Docente</button>
+        <button class="btn btn-primary" (click)="setGenitore()">Genitore</button>
+        <button class="btn btn-primary" (click)="setAltro()">Altro</button>
+    </div>
+</div>
+
+<div class="container">
+    @switch (tipoUtente()) {
+        @case ('studente') {
+            <p>Ciao, studente</p>
+        }
+        @case ('docente') {
+            <p>Buongiorno, prof!</p>
+        }
+        @case ('genitore') {
+            <p>Benvenuto, genitore</p>
+        }
+        @case ('altro') {
+            <p>Non ti conosco...</p>
+        }
+    }
 </div>
