@@ -1,8 +1,8 @@
 export class Persona {
 
     private _id: number;
-    private _nome: string;
-    private _cognome: string;
+    private _nome: string = '';
+    private _cognome: string = '';
     private _genere: string;
 
     constructor(id: number, nome: string, cognome: string, genere: string) {
@@ -37,14 +37,31 @@ export class Persona {
     // lista setter
 
     public set nome(nuovo: string) {
-        this._nome = nuovo;
+        if (nuovo.length > 0)
+            this._nome = nuovo;
+        else
+            throw new Error('Il nome è obbligatorio')
     }
 
     public set cognome(nuovo: string) {
-        this._nome = nuovo;
+        if (nuovo.length > 0)
+            this._nome = nuovo;
+        else
+            throw new Error('Il cognome è obbligatorio')
     }
     
     public set genere(nuovo: string) {
         this._nome = nuovo;
+    }
+
+    // metodi 
+    
+    public toString(): string {
+        return this._nome + ' ' + this._cognome;
+    }
+
+    public toTableRow(): string {
+        //return '<tr><td scope="row">' + this.id + '</td><td>' + this.nome + '</td><td>' + this.cognome + '</td></tr>';
+        return `<tr><td scope="row">${this.id}</td><td>${this.nome}</td><td>${this.cognome}</td></tr>`;
     }
 }
