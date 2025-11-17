@@ -4,23 +4,80 @@
 
 <p><u>Esempio 1</u></p>
 <div>
-    <div class="row">
-        <div class="col-sm-5">
-            <div>
-                <input type="text" class="form-control" #inNomeClasse>
+    <div class="my-5">
+        <!-- se la classe non è ancora stata definita il signal è undefined, quindi devo inserire i dati -->
+        @if(classe() == undefined) {
+
+            @if(visualizzaErrore() != '') {
+                <div class="alert alert-danger" role="alert">
+                    {{visualizzaErrore()}}
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <div>
+                        <input type="text" class="form-control" #inNomeClasse placeholder="Nome della classe (es. 4Ci)">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div>
+                        <input type="text" class="form-control" #inAnnoScolastico placeholder="Anno scolastico (Formato AAAA/AAAA)">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div>
+                        <button class="btn btn-primary" (click)="creaClasse(inNomeClasse.value, inAnnoScolastico.value)">
+                            Crea classe
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-5">
-            <div>
-                <input type="text" class="form-control" #inAnnoScolastico>
+        }
+        <!-- la classe esiste già e la visualizzo -->
+        @else {
+            <div class="row my-3">
+                <div class="col-sm-6">
+                    <!-- ? controlla che il signal esista e non sia undefined (optional chaining per la safe navigation) -->
+                    <h4 class="lead">Classe: {{classe()?.nomeClasse}}</h4>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="lead">Anno scolastico: {{classe()?.annoScolastico}}</h4>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-2">
+
             <div>
-                <button class="btn btn-primary" (click))="creaClasse(inNomeClasse.value, inAnnoScolastico.value)">
-                    Crea classe
-                </button>
+                <h4 class="display-6">Studenti</h4>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col sm-3">
+                    <div>
+                        <input type="text" class="form-control" placeholder="Nome..." #inNome>
+                    </div>
+                </div>
+                <div class="col sm-3">
+                    <div>
+                        <input type="text" class="form-control" placeholder="Cognome..." #inCognome>
+                    </div>
+                </div>
+                <div class="col sm-2">
+                    <div>
+                        <input type="text" class="form-control" placeholder="Genere [M/F]" #inGenere>
+                    </div>
+                </div>
+                <div class="col sm-2">
+                    <div>
+                        <button class="btn btn-primary" (click)="aggiungiStudente(inNome.value, inCognome.value, inGenere.value)">
+                            Aggiungi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-5" [innerHTML]="classe()?.toTable()">
+                
+            </div>
+        }
     </div>
 </div>

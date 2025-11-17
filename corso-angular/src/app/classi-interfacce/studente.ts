@@ -17,7 +17,7 @@ export class Studente extends Persona {
     public set classe(value: string) {
 
         // regex
-        const regex = /^[1-5][ABCDEFQ][aeim]?&/;
+        const regex = /^[1-5][A-S][aeim]?$/;
         /*
         ^: inizio
         $: fine
@@ -35,6 +35,6 @@ export class Studente extends Persona {
     }
 
     public override toTableRow(): string {
-        return `<tr><td scope="row">${this.id}</td><td>${this.nome}</td><td>${this.cognome}</td><td>${this.classe}</td></tr>`;
+        return `<tr><td scope="row">${this.id}</td><td>${this.nome}</td><td>${this.cognome}</td><td>${this.genere}</td><td>${this.classe}</td></tr>`;
     }
 }

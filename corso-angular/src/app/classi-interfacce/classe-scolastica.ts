@@ -7,7 +7,9 @@ export class ClasseScolastica {
     private _studenti: Studente[] = [];
 
     constructor(nomeClasse: string, annoScolastico: string) {
-
+        // per assegnare devo passare per i setter, non tocco le proprietà private
+        this.nomeClasse = nomeClasse;
+        this.annoScolastico = annoScolastico;
     }
 
     public get nomeClasse(): string {
@@ -16,6 +18,16 @@ export class ClasseScolastica {
 
     public get annoScolastico(): string {
         return this._annoScolastico;
+    }
+
+    public set nomeClasse(value: string) {
+        const regex = /^[1-5][A-S][aeim]?$/;
+        if (regex.test(value)) {
+            this._nomeClasse = value;
+        }
+        else {            
+            throw new Error('Nome della classe errato.');
+        }
     }
 
     public set annoScolastico(value: string) {
@@ -44,7 +56,7 @@ export class ClasseScolastica {
         this._studenti[index] = nuovo;
     }
 
-    public toTableRow(): string {
+    public toTable(): string {
 
         // "map" modifica un array elemento per elemento applicando una funzione
         let tmp = `
@@ -54,6 +66,7 @@ export class ClasseScolastica {
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Cognome</th>
+                    <th scope="col">Genere</th>
                     <th scope="col">Classe</th>
                 </tr>
             </thead>
