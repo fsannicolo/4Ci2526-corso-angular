@@ -1,7 +1,8 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ClasseScolastica } from './classe-scolastica';
 import { Studente } from './studente';
 import { timer } from 'rxjs';
+import { IDocente } from './i-docente';
 
 @Component({
   selector: 'app-classi-interfacce',
@@ -16,6 +17,15 @@ export class ClassiInterfacce {
   classe: WritableSignal<ClasseScolastica | undefined> = signal(undefined);
   id: number = 1;
   visualizzaErrore: WritableSignal<string> = signal('');
+
+  // esempio uso interfacce
+  docente: WritableSignal<IDocente | undefined> = signal({
+    id: 1,
+    nome: 'Luca',
+    cognome: 'Boschi',
+    classi: ['3Bi', '4Bi', '5Bi'],
+    materie: ['Informatica']
+  });
 
   public creaClasse(nome: string, anno: string) {
 
