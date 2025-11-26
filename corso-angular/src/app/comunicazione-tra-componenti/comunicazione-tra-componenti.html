@@ -2,8 +2,8 @@
     Comunicazione fra componenti
 </h1>
 <div class="container">
-    <div class="my-5">
-        <button class="btn btn-primary" (click)="aggiungiDocenti()">Aggiungi docenti</button>
-    </div>
+    <app-aggiungi-docenti></app-aggiungi-docenti>
+    
+    <!-- [dati] property binding verso array definito come inputsignal -->
     <app-visualizza-elenco [dati]="docenti()"></app-visualizza-elenco>
 </div>
